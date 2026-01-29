@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/synapse/tree/Frontend/",
+  base: '/synapse/tree/Frontend/',
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
