@@ -1,74 +1,93 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate('/home'); // Go to home page
+  };
+
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-2xl">
-        
-        {/* Header */}
+    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+      {/* Animated background grid */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none" 
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}
+      ></div>
+
+      {/* Login Card */}
+      <div className="relative z-10 w-full max-w-md px-6">
+        {/* Logo */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Welcome Back</h2>
-          <p className="text-zinc-400 mt-2">Enter your details to sign in</p>
+          <h1 className="text-5xl font-bold text-white mb-2">
+            Synapse<span className="text-blue-400">X</span>
+          </h1>
+          <p className="text-gray-400">Welcome back to the future</p>
         </div>
 
-        {/* Form */}
-        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Mobile Number or Email</label>
-            <input 
-              type="text" 
-              placeholder="Enter your details"
-              className="w-full bg-zinc-800 border border-zinc-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-600 transition-all"
-            />
-          </div>
-
-          <div>
-            <div className="flex justify-between mb-1">
-              <label className="text-sm font-medium text-zinc-400">Password</label>
-              <a href="#" className="text-xs text-zinc-500 hover:text-white">Forgot?</a>
-            </div>
-            <input 
-              type="password" 
-              placeholder="••••••••"
-              className="w-full bg-zinc-800 border border-zinc-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-600 transition-all"
-            />
-          </div>
-
-          <button className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-zinc-200 transition-colors mt-2">
-            Sign In
-          </button>
-        </form>
-
-        {/* Divider */}
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-zinc-800"></span>
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-zinc-900 px-2 text-zinc-500">Or login with</span>
-          </div>
-        </div>
-
-        {/* Social Logins */}
-        <div className="grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-2 bg-zinc-800 border border-zinc-700 text-white py-2.5 rounded-lg hover:bg-zinc-700 transition-all">
-            <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />
-            <span className="text-sm font-medium">Google</span>
-          </button>
+        {/* Login Form */}
+        <div className="bg-gray-900/50 backdrop-blur-md border border-gray-700/50 rounded-2xl p-8 shadow-2xl">
+          <h2 className="text-2xl font-semibold text-white mb-6">Login</h2>
           
-          <button className="flex items-center justify-center gap-2 bg-zinc-800 border border-zinc-700 text-white py-2.5 rounded-lg hover:bg-zinc-700 transition-all">
-            <img src="https://www.svgrepo.com/show/512317/github-142.svg" className="w-5 h-5 invert" alt="Github" />
-            <span className="text-sm font-medium">GitHub</span>
-          </button>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Login
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 h-px bg-gray-700"></div>
+            <span className="text-gray-500 text-sm">OR</span>
+            <div className="flex-1 h-px bg-gray-700"></div>
+          </div>
+
+          {/* Sign Up Link */}
+          <div className="text-center">
+            <p className="text-gray-400">
+              Don't have an account?{' '}
+              <Link 
+                to="/signup" 
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300"
+              >
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-zinc-500 text-sm mt-8">
-          Don't have an account?{' '}
-          <Link to="/signup" className="text-white hover:underline font-medium">
-            Create account
-          </Link>
+        {/* Footer Text */}
+        <p className="text-center text-gray-500 text-sm mt-6">
+          By continuing, you agree to our Terms & Privacy Policy
         </p>
       </div>
     </div>

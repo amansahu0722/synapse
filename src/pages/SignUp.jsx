@@ -1,44 +1,126 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    navigate('/home'); // Go to home page
+  };
+
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-2xl">
+    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden py-12">
+      {/* Animated background grid */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none" 
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}
+      ></div>
+
+      {/* SignUp Card */}
+      <div className="relative z-10 w-full max-w-md px-6">
+        {/* Logo */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-white">Create Account</h2>
+          <h1 className="text-5xl font-bold text-white mb-2">
+            Synapse<span className="text-blue-400">X</span>
+          </h1>
+          <p className="text-gray-400">Join the developer community</p>
         </div>
 
-        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Full Name</label>
-            <input type="text" className="w-full bg-zinc-800 border border-zinc-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-zinc-600 outline-none" placeholder="Name" />
+        {/* SignUp Form */}
+        <div className="bg-gray-900/50 backdrop-blur-md border border-gray-700/50 rounded-2xl p-8 shadow-2xl">
+          <h2 className="text-2xl font-semibold text-white mb-6">Create Account</h2>
+          
+          <form onSubmit={handleSignUp} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Full Name
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Username
+              </label>
+              <input
+                type="text"
+                placeholder="Choose a username"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="Create a password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              Sign Up
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 h-px bg-gray-700"></div>
+            <span className="text-gray-500 text-sm">OR</span>
+            <div className="flex-1 h-px bg-gray-700"></div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Mobile Number</label>
-            <input type="tel" className="w-full bg-zinc-800 border border-zinc-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-zinc-600 outline-none" placeholder="Mobile No." />
+
+          {/* Login Link */}
+          <div className="text-center">
+            <p className="text-gray-400">
+              Already have an account?{' '}
+              <Link 
+                to="/login" 
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300"
+              >
+                Login
+              </Link>
+            </p>
           </div>
-          <button className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-zinc-200 transition-colors">Sign Up</button>
-        </form>
-
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-zinc-800"></span></div>
-          <div className="relative flex justify-center text-xs uppercase"><span className="bg-zinc-900 px-2 text-zinc-500">Or</span></div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-2 bg-zinc-800 border border-zinc-700 text-white py-2.5 rounded-lg hover:bg-zinc-700">
-            <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-5 h-5" alt="Google" />
-            <span className="text-sm">Google</span>
-          </button>
-          <button className="flex items-center justify-center gap-2 bg-zinc-800 border border-zinc-700 text-white py-2.5 rounded-lg hover:bg-zinc-700">
-            <img src="https://www.svgrepo.com/show/512317/github-142.svg" className="w-5 h-5 invert" alt="Github" />
-            <span className="text-sm">GitHub</span>
-          </button>
-        </div>
-
-        <p className="text-center text-zinc-500 text-sm mt-8">
-          Already have an account? <Link to="/login" className="text-white hover:underline">Sign in</Link>
+        {/* Footer Text */}
+        <p className="text-center text-gray-500 text-sm mt-6">
+          By signing up, you agree to our Terms & Privacy Policy
         </p>
       </div>
     </div>

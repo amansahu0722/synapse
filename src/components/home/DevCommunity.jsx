@@ -32,7 +32,7 @@ const DevCommunity = () => {
     },
     {
       id: 3,
-      name: 'Priya Sharma',
+      name: 'Jordan Lee',
       title: 'Cloud Architect',
       handle: 'priyacloud',
       rating: 4.8,
@@ -54,7 +54,7 @@ const DevCommunity = () => {
     },
     {
       id: 5,
-      name: 'Emily Zhang',
+      name: 'De Paul',
       title: 'Frontend Developer',
       handle: 'emilyzhang',
       rating: 4.6,
@@ -65,7 +65,7 @@ const DevCommunity = () => {
     },
     {
       id: 6,
-      name: 'Jordan Lee',
+      name: 'Emily Zhang',
       title: 'Backend Developer',
       handle: 'jordanlee',
       rating: 4.6,

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Upload, Calendar, Users, FileText, Image, File, X } from 'lucide-react';
+import { triggerAlert } from '../hook/useAlerts';
 
-const CreateProject = () => {
+const Projects = () => {
   const [formData, setFormData] = useState({
     projectName: '',
     description: '',
@@ -75,15 +76,6 @@ const CreateProject = () => {
     setUploadedFile(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form Data:', formData);
-    console.log('Team Members:', teamMembers);
-    console.log('Uploaded File:', uploadedFile);
-    // Add your submission logic here
-  };
-
   const handleCancel = () => {
     // Reset form or navigate back
     setFormData({
@@ -96,6 +88,26 @@ const CreateProject = () => {
     setTeamMembers([]);
     setUploadedFile(null);
   };
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Submit clicked - Triggering Alert"); // Add this
+  
+  // Simulate a successful creation
+  triggerAlert(
+    'Project Initialized', 
+    `SynapseX: ${formData.projectName} is now active.`, 
+    'success'
+  );
+
+  // Optional: Trigger a warning alert for the AI part
+  setTimeout(() => {
+    triggerAlert(
+      'AI Analysis Started', 
+      'Generating your automated timeline based on project details...', 
+      'info'
+    );
+  }, 1500);
+};
 
   const getFileIcon = (fileName) => {
     const extension = fileName.split('.').pop().toLowerCase();
@@ -106,7 +118,9 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div>
+
+      <div className="min-h-screen bg-black text-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         
         {/* Left Side - Visual/Info Section */}
@@ -380,7 +394,8 @@ const CreateProject = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-export default CreateProject;
+export default Projects;
